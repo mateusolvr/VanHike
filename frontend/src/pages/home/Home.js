@@ -1,9 +1,8 @@
+import './home.css';
 export const Home = () => {
   return (
-    <>
-      <div>
-        <h2>Home</h2>
-      </div>
-    </>
+    <div>
+      <h1>Home</h1>
+    </div>
   );
 };
