@@ -1,11 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 // import dbConnection from './mongo/dbConnection.js';
 import router from './routes/routes.js';
 
 dotenv.config();
 
 const app = express();
+app.use(bodyParser.json());
 
 app.use('/vanhike', router);
 
