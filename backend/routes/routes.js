@@ -10,7 +10,7 @@ router.get('/users', async (req, res) => {
         res.send(adminUsers);
     } catch (err) {
         res.status(400).send({ error: err.message });
-        logger.error(`GET /users - ${err.message}`);
+        // logger.error(`GET /users - ${err.message}`);
     }
 });
 
@@ -20,7 +20,20 @@ router.get('/hikes', async (req, res) => {
         res.send(hikes);
     } catch (err) {
         res.status(400).send({ error: err.message });
-        logger.error(`GET /hikes - ${err.message}`);
+        // logger.error(`GET /hikes - ${err.message}`);
+    }
+});
+
+router.delete('/hikes/:id', async (req, res) => {
+    try {
+        console.log(req.params.id);
+        const hike = await hikesModel.findOneAndDelete({
+            _id: req.params.id,
+        });
+        res.status(200).send();
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+        // logger.error(`DELETE /hike/${req.params.id} - ${err.message}`);
     }
 });
 
