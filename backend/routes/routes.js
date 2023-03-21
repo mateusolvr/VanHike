@@ -7,7 +7,6 @@ const router = express.Router();
 router.get('/users', async (req, res) => {
     try {
         const adminUsers = await adminUserModel.find({});
-        console.log(adminUsers);
         res.send(adminUsers);
     } catch (err) {
         res.status(400).send({ error: err.message });
@@ -18,7 +17,6 @@ router.get('/users', async (req, res) => {
 router.get('/hikes', async (req, res) => {
     try {
         const hikes = await hikesModel.find({});
-        console.log(hikes);
         res.send(hikes);
     } catch (err) {
         res.status(400).send({ error: err.message });
@@ -27,3 +25,15 @@ router.get('/hikes', async (req, res) => {
 });
 
 export default router;
+
+// let date_time = new Date(ts);
+// date = ("0" + date_time.getDate()).slice(-2);
+// month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+// year = date_time.getFullYear();
+// hours = date_time.getHours();
+// minutes = date_time.getMinutes();
+// seconds = date_time.getSeconds();
+// let millisenconds = date_time.getMilliseconds();
+
+// // prints date & time in YYYY-MM-DD format
+// console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds + "." + millisenconds);
