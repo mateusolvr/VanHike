@@ -3,24 +3,47 @@ import dbConnection from '../mongo/dbConnection.js';
 
 var accountsDb = dbConnection.useDb('articles');
 
-let schema = mongoose.Schema({
-    creationDate: String,
-    createdBy: String,
-    description: { intro: String, first: String, second: String },
-    elevation: Number,
-    lastUpdated: String,
-    length: Number,
-    location: { latitude: Number, longitude: Number, mapUrl: String },
-    routeType: String,
-    wayPoints: [
-        {
-            name: String,
-            latitude: Number,
-            longitude: Number,
+let schema = mongoose.Schema(
+    {
+        creationDate: {
+            type: String,
+            immutable: true,
+            required: true,
+            select: false,
         },
-    ],
-    title: String,
-});
+        createdBy: {
+            type: String,
+            immutable: true,
+            required: true,
+            select: false,
+        },
+        description: {
+            intro: { type: String, required: true },
+            first: { type: String },
+            second: { type: String },
+        },
+        elevation: { type: Number },
+        lastUpdated: { type: String, required: true, select: false },
+        length: { type: Number },
+        location: {
+            latitude: { type: Number },
+            longitude: { type: Number },
+            mapUrl: { type: String },
+        },
+        routeType: { type: String },
+        wayPoints: [
+            {
+                name: { type: String },
+                latitude: { type: Number },
+                longitude: { type: Number },
+            },
+        ],
+        title: { type: String, required: true },
+    },
+    {
+        versionKey: false,
+    }
+);
 
 const hikesModel = accountsDb.model('hikes', schema);
 
