@@ -1,6 +1,7 @@
 import express from 'express';
 import { adminUserModel } from '../models/adminUser.model.js';
 import { hikesModel } from '../models/hikes.model.js';
+import { updateHike, createHike } from '../middleware/db.js';
 
 const router = express.Router();
 
@@ -24,10 +25,27 @@ router.get('/hikes', async (req, res) => {
     }
 });
 
+router.get('/hikes/:id', async (req, res) => {
+    try {
+        const hikes = await hikesModel.findById({ _id: req.params.id });
+        res.send(hikes);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
+
+router.post('/hikes', async (req, res) => {
+    try {
+        const hike = await createHike(req.body);
+        res.status(201).send(hike);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
+
 router.delete('/hikes/:id', async (req, res) => {
     try {
-        console.log(req.params.id);
-        const hike = await hikesModel.findOneAndDelete({
+        const hike = await hikesModel.findByIdAndDelete({
             _id: req.params.id,
         });
         res.status(200).send();
@@ -37,16 +55,13 @@ router.delete('/hikes/:id', async (req, res) => {
     }
 });
 
+router.put('/hikes/:id', async (req, res) => {
+    try {
+        const hike = await updateHike(req.params.id, req.body);
+        res.status(200).send(hike);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
+
 export default router;
-
-// let date_time = new Date(ts);
-// date = ("0" + date_time.getDate()).slice(-2);
-// month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-// year = date_time.getFullYear();
-// hours = date_time.getHours();
-// minutes = date_time.getMinutes();
-// seconds = date_time.getSeconds();
-// let millisenconds = date_time.getMilliseconds();
-
-// // prints date & time in YYYY-MM-DD format
-// console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds + "." + millisenconds);
