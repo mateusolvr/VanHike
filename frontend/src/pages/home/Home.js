@@ -2,15 +2,9 @@ import './home.css';
 import TextField from '@mui/material/TextField';
 import { Navbar } from '../../components/Navbar/Navbar';
 import Autocomplete from '@mui/material/Autocomplete';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import path from './path.png';
-import topography from './topography.png';
 import logo from '../../components/Navbar/logo.png';
+import { CardComponent } from '../../components/Card/Card';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
   const top100Films = [
@@ -117,8 +111,13 @@ export const Home = () => {
             )}
           />
         </div>
-        <Card />
+
         {/* <img src={topography} className="topography" /> */}
+      </div>
+      <div className="cardContainer">
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
       </div>
       <footer className="footer">
         <img className="footerLogo" src={logo} alt="logo" />

@@ -6,17 +6,6 @@ height: 100vh;
 background: #111111 0% 0% no-repeat padding-box;
 opacity: 1;
 }
-
-.topography{
-/* Layout Properties */
-top: 110px;
-left: 1429px;
-width: 982px;
-height: 1031px;
-transform: matrix(-0.79, -0.62, 0.62, -0.79, 0, 0);
-/* UI Properties */
-opacity: 0.4;
-}
 .mainContainer{
   display: flex;
   flex-direction: column;
@@ -24,7 +13,6 @@ opacity: 0.4;
   align-items: center;
   top: 131px;
   left: 0;
-  margin-bottom: 23vh;
   width: 100vw;
   height: 533px;
   background: transparent url(./ImageDescription.png) 0% 0% no-repeat padding-box;
@@ -36,14 +24,11 @@ opacity: 0.4;
   justify-content: center;
   flex-direction: row;
   /* Layout Properties */
-  top: 449px;
-  left: 590px;
   width: 740px;
   height: 66px;
 /* UI Properties */
   opacity: 1;
   border-bottom: 2px solid #FFFFFF;
-margin-bottom: 80px;
 }
 .mainPageh2{
 width: 278px;
@@ -52,7 +37,6 @@ text-align: center;
 font: normal normal normal 24px/29px 'Montserrat';
 letter-spacing: 0px;
 color: #FFFFFF;
-margin-top:160px;
 }
 .mainPageh3{
   /* Layout Properties */
@@ -70,70 +54,21 @@ opacity: 1;
 margin-bottom: 55.5px;
 }
 .cardContainer{
+/* position: absolute; */
 display: flex;
-align-items: center;
-width: 1280px;
-height: 1283px;
+flex-direction: row;
+display: flex;
+justify-content: flex-start;
+/* width: 100vw; */
 padding-left: 320px;
 padding-right: 320px;
+margin-top: -85px;
 }
-.card{
-width: 308px;
-height: 400px;
-border-radius: 20px;
-background:  url(./ImageDescription.png) center;
-display: flex;
-align-items: flex-end;
-}
-.cardInfo{
-/* Layout Properties */
-width: 308px;
-height: 120px;
-border-bottom-left-radius: 20px;
-border-bottom-right-radius: 20px;
 
-/* UI Properties */
-background: #000000 0% 0% no-repeat padding-box;
-opacity: 0.56;
-color: #fff;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-}
-.cardInfo strong{
-padding-top: 20px;
-text-align: center;
-font: normal normal bold 16px/19px Montserrat;
-letter-spacing: 0px;
-color: #FFFFFF;
-text-transform: uppercase;
-opacity: 1;
-}
-.cardInfo p{
-  margin: 5px;
-  text-align: center;
-font: normal normal normal 14px/18px Montserrat;
-letter-spacing: 0px;
-}
-.cardLine{
-  margin: 10px;
-  height: 0px;
-  width: 30px;
-/* UI Properties */
-border: 2px solid #FFFFFF;
-}
-.kmdif{
-  display: flex;
-  margin-bottom: 18px;
-}
-.kmdif hr{
-  margin-top: 2px;
-  max-height: 18px;
-}
 
 .footer{
   /* Layout Properties */
+margin-top:40vh;
 width: 100vw;
 height: 87px;
 border-top: 1px solid #fff;
