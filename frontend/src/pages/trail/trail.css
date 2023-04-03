@@ -1,0 +1,11 @@
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 131px;
+  left: 0;
+  width: 100vw;
+  height: 825px;
+  background: transparent url(./joffre1.jpg) 0% 0% no-repeat center;
+}
