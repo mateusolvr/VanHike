@@ -1,31 +1,34 @@
 import './home.css';
+import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { Navbar } from '../../components/Navbar/Navbar';
 import Autocomplete from '@mui/material/Autocomplete';
 import logo from '../../components/Navbar/logo.png';
 import { CardComponent } from '../../components/Card/Card';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export const Home = () => {
-  const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 },
-    {
-      label: 'The Lord of the Rings: The Return of the King',
-      year: 2003,
-    },
-    { label: 'The Good, the Bad and the Ugly', year: 1966 },
-    { label: 'Fight Club', year: 1999 },
-    {
-      label: 'The Lord of the Rings: The Fellowship of the Ring',
-      year: 2001,
-    },
-  ];
+  const [trails, setTrails] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedTerrain, setSelectedTerrain] = useState('');
+  const [selectedDifficulty, setSelectedDifficulty] = useState('');
+
+  useEffect(() => {
+    axios.get('/trails').then((response) => {
+      setTrails(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    const params = {
+      location: selectedLocation,
+      terrain: selectedTerrain,
+      difficulty: selectedDifficulty,
+    };
+    axios.get('/trails', { params }).then((response) => {
+      setTrails(response.data);
+    });
+  }, [selectedLocation, selectedTerrain, selectedDifficulty]);
   return (
     <div>
       <Navbar />
@@ -36,7 +39,11 @@ export const Home = () => {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={top100Films}
+            options={trails}
+            value={selectedLocation}
+            onChange={(event, newValue) => {
+              setSelectedLocation(newValue);
+            }}
             sx={{ width: 300, color: '#FFFFFF' }}
             renderInput={(params) => (
               <TextField
@@ -61,7 +68,11 @@ export const Home = () => {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={top100Films}
+            options={trails}
+            value={selectedTerrain}
+            onChange={(event, newValue) => {
+              setSelectedTerrain(newValue);
+            }}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField
@@ -86,7 +97,11 @@ export const Home = () => {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={top100Films}
+            options={trails}
+            value={selectedDifficulty}
+            onChange={(event, newValue) => {
+              setSelectedDifficulty(newValue);
+            }}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField
@@ -115,9 +130,21 @@ export const Home = () => {
         {/* <img src={topography} className="topography" /> */}
       </div>
       <div className="cardContainer">
-        <Link to="/trails/1">
-          <CardComponent />
-        </Link>
+        <ul className="cardGrid">
+          {trails.map((trail) => (
+            <li key={trail.id}>
+              <Link to={`/trails/${trail.id}`}>
+                <CardComponent
+                  name={trail.name}
+                  location={trail.location}
+                  distance={trail.distance}
+                  difficulty={trail.difficulty}
+                  image={trail.image}
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
       <footer className="footer">
         <img className="footerLogo" src={logo} alt="logo" />

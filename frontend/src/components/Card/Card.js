@@ -1,17 +1,17 @@
 import React from 'react';
 import './card.css';
-export const CardComponent = () => {
+export const CardComponent = ({ trail }) => {
   return (
     <div>
       <div className="card">
         <div className="cardInfo">
-          <strong>West Coast</strong>
-          <p>Vancouver Insland</p>
+          <strong>{trail.title}</strong>
+          <p>{trail.location}</p>
           <div className="cardLine"></div>
           <div className="kmdif">
-            <p>75.5 Km</p>
+            <p>{trail.distance}</p>
             <hr />
-            <p>Hard</p>
+            <p>{trail.difficulty}</p>
           </div>
         </div>
       </div>
