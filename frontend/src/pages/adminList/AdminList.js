@@ -23,7 +23,10 @@ export const AdminList = () => {
 				<Container maxWidth='lg'>
 					<hr />
 					<div className='actionBar'>
-						<Button variant='outlined' sx={{ marginRight: 3 }}>
+						<Button
+							variant='outlined'
+							sx={{ marginRight: 3 }}
+							className='create-article-button'>
 							CREATE ARTICLE
 						</Button>
 
