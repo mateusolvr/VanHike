@@ -18,11 +18,11 @@ export const TrailSelection = (props) => {
 
 				<div className='trail-info-action'>
 					<button className='trail-info-button'>
-						<EditOutlinedIcon />
+						<EditOutlinedIcon className='mui-icons' />
 						Edit
 					</button>
 					<button className='trail-info-button'>
-						<DeleteOutlineOutlinedIcon />
+						<DeleteOutlineOutlinedIcon className='mui-icons' />
 						Delete
 					</button>
 				</div>
