@@ -4,7 +4,15 @@ import dbConnection from '../mongo/dbConnection.js';
 var accountsDb = dbConnection.useDb('accounts');
 
 let schema = mongoose.Schema({
-    userName: String,
+    userName: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+        select: false,
+    },
 });
 
 const adminUserModel = accountsDb.model('admin-accounts', schema);
