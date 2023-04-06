@@ -1,4 +1,5 @@
 import { hikesModel } from '../models/hikes.model.js';
+import { adminUserModel } from '../models/adminUser.model.js';
 
 export async function updateHike(id, body) {
     body.lastUpdated = getCurrentDatetime();
@@ -8,15 +9,20 @@ export async function updateHike(id, body) {
     return hike;
 }
 
-export async function createHike(body) {
+export async function createHike(body, user) {
     let currDatetime = getCurrentDatetime();
     body.lastUpdated = currDatetime;
     body.creationDate = currDatetime;
     // ##################
-    body.createdBy = 'admin'; // UPDATE LATER
+    body.createdBy = user;
     // ##################
     const hike = await hikesModel.create(body);
     return hike;
+}
+
+export async function createUser(newUser) {
+    const createdUser = await adminUserModel.create(newUser);
+    return createdUser;
 }
 
 function getCurrentDatetime() {
