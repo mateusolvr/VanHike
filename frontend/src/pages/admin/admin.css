@@ -1,0 +1,41 @@
+figure {
+	text-align: center;
+}
+
+.admin-box {
+	margin-top: 50px;
+	background: #111 !important;
+	border: 2px white solid;
+	border-radius: 30px !important;
+}
+
+.admin-form-box-content:last-child {
+	padding: 120px 100px !important;
+}
+
+.webform-content label,
+.webform-content label .Mui-focused,
+.webform-content input[type='text'],
+.webform-content input[type='password'] {
+	color: white !important;
+}
+
+.webform-content div:before,
+.webform-content div:after {
+	border-bottom: 1px white solid !important;
+}
+
+.btn-submit {
+	text-align: center;
+}
+
+.btn-input {
+	color: white !important;
+	border: 2px white solid !important;
+	width: 45%;
+}
+
+.btn-input:hover {
+	color: #111 !important;
+	background-color: white !important;
+}

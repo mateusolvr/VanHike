@@ -1,49 +1,49 @@
-.navbar{
-  height: 100px;
-  width: 100vw;
-  background-color: #000;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0px  0px 0px;
+.navbar {
+	height: 100px;
+	width: 100vw;
+	background-color: #111;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0px 0px 0px;
 }
-ul{
-  list-style: none;
-  display: flex;
-  flex-direction: row;
+ul {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700&display=swap');
 
-li{
-  padding: 35px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: .9em;
-  font-weight: 600;
+li {
+	padding: 35px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 0.9em;
+	font-weight: 600;
 }
-a{
-  display: inline-block;
-  position: relative;
-  color: #fff;
-  padding-bottom: 5px;
+a {
+	display: inline-block;
+	position: relative;
+	color: #fff;
+	padding-bottom: 5px;
 }
-a:after{
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-  transform-origin: bottom  ;
-  transition: transform 0.25s ease-out;
+a:after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: #fff;
+	transform-origin: bottom;
+	transition: transform 0.25s ease-out;
 }
-a:hover:after{
-  transform: scaleX(1);
-  transform-origin: bottom ;
+a:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom;
 }
 
-.navbar img{
-  max-width: 10vw;
+.navbar img {
+	max-width: 10vw;
 }
