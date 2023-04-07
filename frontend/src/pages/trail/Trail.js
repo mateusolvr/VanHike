@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { Navbar } from '../../components/Navbar/Navbar';
 import './trail.css';
 import trailImg from './joffre1.jpg';
@@ -7,18 +8,18 @@ import logo from '../../components/Navbar/logo.png';
 
 export const Trail = () => {
   const [trail, setTrail] = useState({});
-
+  const { id } = useParams();
   useEffect(() => {
     const getTrailData = async () => {
       try {
-        const response = await axios.get(`/trails/${response.params.id}`);
-        setTrail(response.data);
+        const res = await axios.get(`/trails/${id}`);
+        setTrail(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     getTrailData();
-  }, []);
+  }, [id]);
 
   return (
     <div>

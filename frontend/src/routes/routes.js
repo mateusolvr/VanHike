@@ -7,7 +7,7 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/trails/1" element={<Trail />} />
+      <Route path="/trails/:id" element={<Trail />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
