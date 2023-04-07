@@ -58,8 +58,10 @@ margin-bottom: 55.5px;
 /* position: absolute; */
 display: flex;
 flex-direction: row;
+align-items: center;
+flex-wrap: wrap;
 display: flex;
-justify-content: flex-start;
+justify-content: center;
 /* width: 100vw; */
 padding-left: 320px;
 padding-right: 320px;

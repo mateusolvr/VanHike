@@ -14,6 +14,30 @@ export const Home = () => {
   const [selectedTerrain, setSelectedTerrain] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
 
+  const trailData = [
+    {
+      name: 'Trail 1',
+      location: 'Location 1',
+      distance: '10 miles',
+      difficulty: 'Moderate',
+      image: 'image1.jpg',
+    },
+    {
+      name: 'Trail 2',
+      location: 'Location 2',
+      distance: '5 miles',
+      difficulty: 'Easy',
+      image: 'image2.jpg',
+    },
+    {
+      name: 'Trail 3',
+      location: 'Location 3',
+      distance: '15 miles',
+      difficulty: 'Difficult',
+      image: 'image3.jpg',
+    },
+    // Add more objects for additional trails as needed
+  ];
   useEffect(() => {
     axios.get('/trails').then((response) => {
       setTrails(response.data);
@@ -130,7 +154,7 @@ export const Home = () => {
         {/* <img src={topography} className="topography" /> */}
       </div>
       <div className="cardContainer">
-        <ul className="cardGrid">
+        {/* <ul className="cardGrid">
           {trails.map((trail) => (
             <li key={trail.id}>
               <Link to={`/trails/${trail.id}`}>
@@ -144,7 +168,25 @@ export const Home = () => {
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
       </div>
       <footer className="footer">
         <img className="footerLogo" src={logo} alt="logo" />
