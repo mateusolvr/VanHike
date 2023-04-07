@@ -60,7 +60,8 @@ padding: 5px;
 }
 .miniWeatherContainer p{
   text-align: left;
-  font: normal normal normal 20px 'Montserrat';
+  font: normal normal normal 25px 'Montserrat';
+  font-weight: 300;
   letter-spacing: 0px;
   color: #FFFFFF;
   opacity: 1;
@@ -95,21 +96,27 @@ opacity: 1;
 padding: 5px;
 }
 .map{
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+text-align: left;
+display: flex;
+justify-content: center;
+align-items: center;
 font: normal normal bold 12px/15px 'Montserrat';
 letter-spacing: 0px;
 color: #FFFFFF;
 text-transform: uppercase;
 opacity: 1;
-width: 120px;
+width: 140px;
 height: 46px;
 border: 2px solid #fff;
 margin: 30px 5px 0px 5px;
 }
-
+.bsMap{
+  padding-right: 10px;
+  border-right: 2px solid #fff;
+}
+.map p{
+  margin-left: 5px;
+}
 .aboutTrailContainer{
   /* height: 1920px; */
   display: flex;
@@ -218,6 +225,7 @@ height: 0px;
 border: 1px solid #FFFFFF;
 opacity: 1;
 }
+
 .waypointsDiv{
   display: flex;
   align-items: center;
@@ -226,4 +234,41 @@ opacity: 1;
 }
 .waypointsDiv h2{
   margin-top: 80px;
+}
+.weatherListContainer p{
+text-align: center;
+font: normal normal bold 16px/19px Montserrat;
+letter-spacing: 0px;
+color: #FFFFFF;
+padding: 40px 20px 5px 20px;
+}
+.connectIcons{
+  display: flex;
+  flex-direction: row;
+}
+.learnMoreContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.learnMore{
+  position: absolute;
+  left: 910px;
+  width: 100px;
+  top: 80vh;
+  text-align: center;
+  font: normal normal bold 14px/18px Montserrat;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  opacity: 1;
+}
+.verticalLine{
+position: absolute;
+top: 41vw;
+left: 961px;
+width: 0px;
+height: 200px;
+border: 1px solid #FFFFFF;
+opacity: 1;
 }

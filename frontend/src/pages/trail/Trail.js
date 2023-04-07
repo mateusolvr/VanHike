@@ -5,10 +5,21 @@ import { Navbar } from '../../components/Navbar/Navbar';
 import './trail.css';
 import trailImg from './joffre1.jpg';
 import logo from '../../components/Navbar/logo.png';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { BsCloudSnow, BsMap } from 'react-icons/bs';
 
 export const Trail = () => {
   const [trail, setTrail] = useState({});
   const { id } = useParams();
+  const daysOfWeek = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
   useEffect(() => {
     const getTrailData = async () => {
       try {
@@ -29,7 +40,12 @@ export const Trail = () => {
         <img className="singleTrailImg" src={trailImg} alt="" />
         <div className="singleTrailInfoContainer">
           <div className="miniWeatherContainer">
-            <p>5 C</p>
+            <div>
+              <p>
+                <BsCloudSnow size={30} /> 5° C
+              </p>
+            </div>
+
             <span>Snowing | H: 7C L-2C</span>
           </div>
           <h1 className="singleTrailTitle">Joffre Lakes</h1>
@@ -43,11 +59,16 @@ export const Trail = () => {
             experience the natural beauty of the area up close, making it a
             must-see destination for nature lovers and hikers alike.
           </p>
+
           <div className="map">
-            <p>Open in Map</p>
+            <BsMap size={20} className="bsMap" />
+            <p> Open in Map</p>
           </div>
         </div>
       </div>
+      <div className="learnMoreContainer"></div>
+      <p className="learnMore">Learn More</p>
+      <div className="verticalLine"></div>
       <div className="aboutTrailContainer">
         <h2>Joffre Lakes</h2>
         <div className="smallDiv"></div>
@@ -109,7 +130,11 @@ export const Trail = () => {
         <div className="horizontalLine"></div>
         <div className="weatherListContainer">
           <ul>
-            <li>Days of week</li>
+            {daysOfWeek.map((day) => (
+              <>
+                <p>{day}</p>
+              </>
+            ))}
           </ul>
         </div>
         <div className="waypointsDiv">
@@ -125,10 +150,13 @@ export const Trail = () => {
       <footer className="footer">
         <img className="footerLogo" src={logo} alt="logo" />
         <span>2023 VanHike - All rights reserved</span>
+
         <div className="connectSmallDiv">
           <p>Connect with us</p>
-          <p>F</p>
-          <p>I</p>
+          <div className="connectIcons">
+            <FaFacebookF size={20} />
+            <FaInstagram size={20} />
+          </div>
         </div>
       </footer>
     </div>

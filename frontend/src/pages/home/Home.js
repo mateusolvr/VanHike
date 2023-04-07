@@ -7,6 +7,7 @@ import logo from '../../components/Navbar/logo.png';
 import { CardComponent } from '../../components/Card/Card';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 export const Home = () => {
   const [trails, setTrails] = useState([]);
@@ -193,8 +194,10 @@ export const Home = () => {
         <span>2023 VanHike - All rights reserved</span>
         <div className="connectSmallDiv">
           <p>Connect with us</p>
-          <p>F</p>
-          <p>I</p>
+          <div className="connectIcons">
+            <FaFacebookF size={20} />
+            <FaInstagram size={20} />
+          </div>
         </div>
       </footer>
     </div>
