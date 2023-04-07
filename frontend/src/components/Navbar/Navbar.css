@@ -15,19 +15,19 @@ ul{
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700&display=swap');
 
-li{
+.navbar li{
   padding: 35px;
   font-family: 'Montserrat', sans-serif;
   font-size: .9em;
   font-weight: 600;
 }
-a{
+.navbar a{
   display: inline-block;
   position: relative;
   color: #fff;
   padding-bottom: 5px;
 }
-a:after{
+.navbar a:after{
   content: '';
   position: absolute;
   width: 100%;

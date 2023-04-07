@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 export const Navbar = () => {
   return (
     <nav className="navbar">
-      <img src={logo} alt="logo" />
+      <Link to="/">
+        <img src={logo} alt="logo" />
+      </Link>
+
       <ul>
         <li>
           <Link to="/"> ROUTES & TRAILS</Link>
