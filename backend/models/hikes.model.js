@@ -22,6 +22,12 @@ let schema = mongoose.Schema(
             first: { type: String },
             second: { type: String },
         },
+        images: {
+            main: { type: String, required: true },
+            first: { type: String },
+            second: { type: String },
+            footer: { type: String },
+        },
         elevation: { type: Number },
         lastUpdated: { type: String, required: true, select: false },
         length: { type: Number },
