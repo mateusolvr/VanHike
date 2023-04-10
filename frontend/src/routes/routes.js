@@ -47,7 +47,7 @@ export const AppRoutes = () => {
 					}
 				/>
 				<Route
-					path='/admin/edit-article'
+					path='/admin/edit-article/:id'
 					element={
 						<ProtectedRoute>
 							<EditArticle />

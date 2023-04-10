@@ -9,7 +9,7 @@ let schema = mongoose.Schema(
 			type: String,
 			immutable: true,
 			required: true,
-			select: false,
+			select: true,
 		},
 		createdBy: {
 			type: String,
