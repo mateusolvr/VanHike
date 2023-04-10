@@ -39,7 +39,7 @@ ul{
   transform-origin: bottom  ;
   transition: transform 0.25s ease-out;
 }
-a:hover:after{
+.navbar a:hover:after{
   transform: scaleX(1);
   transform-origin: bottom ;
 }
