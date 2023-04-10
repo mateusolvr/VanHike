@@ -70,6 +70,7 @@ export const CreateArticle = () => {
 							id='coordinates'
 							label='Coordinates'
 							variant='standard'
+							placeholder='49.225616, -122.1561616 (Separate with comma and space)'
 							sx={{ marginBottom: 5 }}
 							onChange={(e) => handleChange(e)}
 						/>
@@ -164,6 +165,7 @@ export const CreateArticle = () => {
 								id='waypoint1coordinate'
 								label='Coordinate'
 								variant='standard'
+								placeholder='49.2256, -122.1546'
 								sx={{ marginBottom: 3 }}
 								onChange={(e) => handleChange(e)}
 							/>
@@ -184,6 +186,7 @@ export const CreateArticle = () => {
 								id='waypoint2coordinate'
 								label='Coordinate'
 								variant='standard'
+								placeholder='49.2256, -122.1546'
 								sx={{ marginBottom: 3 }}
 								onChange={(e) => handleChange(e)}
 							/>
@@ -204,6 +207,7 @@ export const CreateArticle = () => {
 								id='waypoint3coordinate'
 								label='Coordinate'
 								variant='standard'
+								placeholder='49.2256, -122.1546'
 								sx={{ marginBottom: 3 }}
 								onChange={(e) => handleChange(e)}
 							/>
@@ -224,6 +228,7 @@ export const CreateArticle = () => {
 								id='waypoint4coordinate'
 								label='Coordinate'
 								variant='standard'
+								placeholder='49.2256, -122.1546'
 								sx={{ marginBottom: 5 }}
 								onChange={(e) => handleChange(e)}
 							/>
