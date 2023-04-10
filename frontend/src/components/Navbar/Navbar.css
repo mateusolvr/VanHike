@@ -15,33 +15,34 @@ ul {
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700&display=swap');
 
-li {
-	padding: 35px;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 0.9em;
-	font-weight: 600;
+.navbar li{
+  padding: 35px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .9em;
+  font-weight: 600;
 }
-a {
-	display: inline-block;
-	position: relative;
-	color: #fff;
-	padding-bottom: 5px;
+.navbar a{
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  padding-bottom: 5px;
 }
-a:after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	transform: scaleX(0);
-	height: 2px;
-	bottom: 0;
-	left: 0;
-	background-color: #fff;
-	transform-origin: bottom;
-	transition: transform 0.25s ease-out;
+.navbar a:after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transform-origin: bottom  ;
+  transition: transform 0.25s ease-out;
 }
-a:hover:after {
-	transform: scaleX(1);
-	transform-origin: bottom;
+.navbar a:hover:after{
+  transform: scaleX(1);
+  transform-origin: bottom ;
+
 }
 
 .navbar img {

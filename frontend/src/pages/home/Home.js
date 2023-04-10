@@ -7,6 +7,7 @@ import logo from '../../components/Navbar/logo.png';
 import { CardComponent } from '../../components/Card/Card';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 export const Home = () => {
   const [trails, setTrails] = useState([]);
@@ -130,7 +131,7 @@ export const Home = () => {
         {/* <img src={topography} className="topography" /> */}
       </div>
       <div className="cardContainer">
-        <ul className="cardGrid">
+        {/* <ul className="cardGrid">
           {trails.map((trail) => (
             <li key={trail.id}>
               <Link to={`/trails/${trail.id}`}>
@@ -144,15 +145,35 @@ export const Home = () => {
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
+        <Link to="/trails/1">
+          <CardComponent />
+        </Link>
       </div>
       <footer className="footer">
         <img className="footerLogo" src={logo} alt="logo" />
         <span>2023 VanHike - All rights reserved</span>
         <div className="connectSmallDiv">
           <p>Connect with us</p>
-          <p>F</p>
-          <p>I</p>
+          <div className="connectIcons">
+            <FaFacebookF size={20} />
+            <FaInstagram size={20} />
+          </div>
         </div>
       </footer>
     </div>

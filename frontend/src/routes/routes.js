@@ -10,6 +10,7 @@ import { EditArticle } from '../pages/editArticle/EditArticle';
 import { Context, AuthContext } from '../Context/AuthContext';
 
 export const AppRoutes = () => {
+
 	function ProtectedRoute({ children }) {
 		const { authenticated, loading } = useContext(Context);
 

@@ -5,6 +5,7 @@ import logo from './logo.png';
 import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
+
 	const { authenticated, handleLogout } = useContext(Context);
 
 	const adminLink = (
