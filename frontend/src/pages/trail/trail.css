@@ -250,12 +250,12 @@ padding: 40px 20px 5px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .learnMore{
-  position: absolute;
-  left: 910px;
+  /* left: 910px; */
   width: 100px;
-  top: 80vh;
+  padding: 5px;
   text-align: center;
   font: normal normal bold 14px/18px Montserrat;
   letter-spacing: 0px;
@@ -264,9 +264,6 @@ padding: 40px 20px 5px 20px;
   opacity: 1;
 }
 .verticalLine{
-position: absolute;
-top: 41vw;
-left: 961px;
 width: 0px;
 height: 200px;
 border: 1px solid #FFFFFF;

@@ -66,9 +66,11 @@ export const Trail = () => {
           </div>
         </div>
       </div>
-      <div className="learnMoreContainer"></div>
-      <p className="learnMore">Learn More</p>
-      <div className="verticalLine"></div>
+      <div className="learnMoreContainer">
+        <p className="learnMore">Learn More</p>
+        <div className="verticalLine"></div>
+      </div>
+
       <div className="aboutTrailContainer">
         <h2>Joffre Lakes</h2>
         <div className="smallDiv"></div>
