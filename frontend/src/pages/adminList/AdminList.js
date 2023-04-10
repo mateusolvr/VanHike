@@ -26,7 +26,8 @@ export const AdminList = () => {
 						<Button
 							variant='outlined'
 							sx={{ marginRight: 3 }}
-							className='create-article-button'>
+							className='create-article-button'
+							href='/admin/create-article'>
 							CREATE ARTICLE
 						</Button>
 
