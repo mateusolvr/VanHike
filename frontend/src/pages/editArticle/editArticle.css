@@ -56,3 +56,23 @@
 .upload-buttons {
 	margin-bottom: 40px;
 }
+
+.images-holder {
+	width: 100%;
+}
+
+.images-holder span {
+	display: inline-block;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 0.75em;
+	margin-top: 10px;
+	color: grey;
+}
+
+.cancelIcon {
+	width: 0.7em !important;
+	height: 0.7em !important;
+	margin-left: 5px;
+	vertical-align: middle;
+	cursor: pointer;
+}

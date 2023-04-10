@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Context = createContext();
 
-const urlHandler = 'http://localhost:5000';
+const urlHandler = process.env.REACT_APP_URL_HANDLER;
 
 function AuthContext({ children }) {
 	const [authenticated, setAuthenticated] = useState(false);
@@ -141,6 +141,7 @@ function AuthContext({ children }) {
 			hike.wayPoints.push(waypoint);
 		}
 
+		//Checks for images
 		if (mainImage) {
 			await handleImage(mainImage).then((response) => {
 				hike.images.main = response;
@@ -177,8 +178,8 @@ function AuthContext({ children }) {
 
 		await axios
 			.post(url, hike, config)
-			.then(() => {
-				return navigate('/trails/1');
+			.then((resp) => {
+				return navigate(`/admin-list`);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -214,6 +215,165 @@ function AuthContext({ children }) {
 		}
 	}
 
+	// Handle Edit Article
+	async function handleEditArticle(
+		event,
+		hikeId,
+		values,
+		mainImage,
+		firstImage,
+		secondImage,
+		footerImage,
+		imageLinks
+	) {
+		event.preventDefault();
+		const coordinates = values.coordinates.split(', ');
+
+		const hike = {
+			title: values.title,
+			province: values.province,
+			description: {
+				intro: values.intro,
+				first: values.firstText,
+				second: values.secondText,
+			},
+			elevation: values.elevation,
+			length: values.length,
+			location: {
+				latitude: coordinates[0],
+				longitude: coordinates[1],
+				mapUrl: values.mapURL,
+			},
+			routeType: values.routeType,
+			wayPoints: [],
+			images: {},
+		};
+
+		// Check for waypoints
+		if (values.waypoint1 && values.waypoint1coordinate) {
+			const waypointCoord = values.waypoint1coordinate.split(', ');
+
+			const waypoint = {
+				name: values.waypoint1,
+				latitude: waypointCoord[0],
+				longitude: waypointCoord[1],
+			};
+
+			hike.wayPoints.push(waypoint);
+		}
+
+		if (values.waypoint2 && values.waypoint2coordinate) {
+			const waypointCoord = values.waypoint2coordinate.split(', ');
+
+			const waypoint = {
+				name: values.waypoint2,
+				latitude: waypointCoord[0],
+				longitude: waypointCoord[1],
+			};
+
+			hike.wayPoints.push(waypoint);
+		}
+
+		if (values.waypoint3 && values.waypoint3coordinate) {
+			const waypointCoord = values.waypoint3coordinate.split(', ');
+
+			const waypoint = {
+				name: values.waypoint3,
+				latitude: waypointCoord[0],
+				longitude: waypointCoord[1],
+			};
+
+			hike.wayPoints.push(waypoint);
+		}
+
+		if (values.waypoint4 && values.waypoint4coordinate) {
+			const waypointCoord = values.waypoint4coordinate.split(', ');
+
+			const waypoint = {
+				name: values.waypoint4,
+				latitude: waypointCoord[0],
+				longitude: waypointCoord[1],
+			};
+
+			hike.wayPoints.push(waypoint);
+		}
+
+		//Checks for images
+		if (mainImage) {
+			await handleImage(mainImage).then((response) => {
+				hike.images.main = response;
+			});
+		} else if (imageLinks.main) {
+			hike.images.main = imageLinks.main;
+		}
+
+		if (firstImage) {
+			await handleImage(firstImage).then((response) => {
+				hike.images.first = response;
+			});
+		} else if (imageLinks.first) {
+			hike.images.first = imageLinks.first;
+		}
+
+		if (secondImage) {
+			await handleImage(secondImage).then((response) => {
+				hike.images.second = response;
+			});
+		} else if (imageLinks.second) {
+			hike.images.second = imageLinks.second;
+		}
+
+		if (footerImage) {
+			await handleImage(footerImage).then((response) => {
+				hike.images.footer = response;
+			});
+		} else if (imageLinks.footer) {
+			hike.images.footer = imageLinks.footer;
+		}
+
+		// Sending to server
+		const url = `${urlHandler}/vanhike/hikes/${hikeId}`;
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${JSON.parse(token)}`,
+			},
+		};
+
+		await axios
+			.put(url, hike, config)
+			.then((resp) => {
+				return navigate(`/admin-list`);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	// Handle Delete Trail
+	async function handleDeleteTrail(e, hikeId) {
+		e.preventDefault();
+
+		const url = `${urlHandler}/vanhike/hikes/${hikeId}`;
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${JSON.parse(token)}`,
+			},
+		};
+
+		await axios
+			.delete(url, config)
+			.then(() => {
+				return navigate(0);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
 	return (
 		<Context.Provider
 			value={{
@@ -224,6 +384,8 @@ function AuthContext({ children }) {
 				handleLogin,
 				handleLogout,
 				handleCreateArticle,
+				handleEditArticle,
+				handleDeleteTrail,
 			}}>
 			{children}
 		</Context.Provider>
