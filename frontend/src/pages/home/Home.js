@@ -43,6 +43,7 @@ export const Home = () => {
         <h3 className="mainPageh3"> Adventure</h3>
         <div className="filterContainer">
           <Autocomplete
+            disabled
             disablePortal
             id="combo-box-demo"
             options={trails}
@@ -72,6 +73,7 @@ export const Home = () => {
           />
 
           <Autocomplete
+            disabled
             disablePortal
             id="combo-box-demo"
             options={trails}
@@ -83,7 +85,7 @@ export const Home = () => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Terrain"
+                label="Type"
                 InputLabelProps={{
                   style: {
                     color: '#FFF',
@@ -96,11 +98,20 @@ export const Home = () => {
                   marginBottom: '10px',
                   color: 'transparent',
                 }}
+                filterOptions={(options, { inputValue }) =>
+                  options.filter(
+                    (option) =>
+                      option.type
+                        .toLowerCase()
+                        .indexOf(inputValue.toLowerCase()) !== -1
+                  )
+                }
               />
             )}
           />
 
           <Autocomplete
+            disabled
             disablePortal
             id="combo-box-demo"
             options={trails}
@@ -112,7 +123,7 @@ export const Home = () => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Difficulty"
+                label="Elevation"
                 InputLabelProps={{
                   style: {
                     color: '#FFF',
