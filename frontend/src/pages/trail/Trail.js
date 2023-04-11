@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { Navbar } from '../../components/Navbar/Navbar';
 import './trail.css';
-import trailImg from './joffre1.jpg';
 import logo from '../../components/Navbar/logo.png';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { BsCloudSnow, BsMap } from 'react-icons/bs';
 
 export const Trail = () => {
   const [trail, setTrail] = useState({});
-  const { id } = useParams();
+  const { _id } = useParams();
+  console.log(_id);
   const daysOfWeek = [
     'Monday',
     'Tuesday',
@@ -22,22 +22,24 @@ export const Trail = () => {
   ];
   useEffect(() => {
     const getTrailData = async () => {
-      try {
-        const res = await axios.get(`/trails/${id}`);
-        setTrail(res.data);
-      } catch (error) {
-        console.log(error);
-      }
+      await axios
+        .get(`http://localhost:8005/vanhike/hikes/642f140b5af6de438e7b5a91`)
+        .then((res) => {
+          setTrail(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     };
     getTrailData();
-  }, [id]);
+  }, []);
 
   return (
     <div>
       <Navbar />
-
       <div className="singleTrailContainer">
-        <img className="singleTrailImg" src={trailImg} alt="" />
+        <img className="singleTrailImg" src={trail.images.main} alt="" />
         <div className="singleTrailInfoContainer">
           <div className="miniWeatherContainer">
             <div>
@@ -48,8 +50,8 @@ export const Trail = () => {
 
             <span>Snowing | H: 7C L-2C</span>
           </div>
-          <h1 className="singleTrailTitle">Joffre Lakes</h1>
-          <p className="singleTrailLocation">British Columbia</p>
+          <h1 className="singleTrailTitle">{trail.title}</h1>
+          <p className="singleTrailLocation">{trail.province}</p>
           <p className="singleTrailCoordinates">50.324123 N, 122.213123 W</p>
           <div className="smallDiv"></div>
           <p className="singleTrailDescription">
@@ -108,10 +110,10 @@ export const Trail = () => {
             waterfalls. The park also features a campground where visitors can
             enjoy a night under the stars surrounded by nature.
           </p>
-          <img src={trailImg} alt="" />
+          <img src={trail.images.main} alt="" />
         </div>
         <div className="picAndTextContainer2">
-          <img src={trailImg} alt="" />
+          <img src={trail.images.main} alt="" />
           <p>
             The trail to Joffre Lakes is considered moderately difficult, but
             the breathtaking views and serene ambiance are worth the effort.
@@ -126,7 +128,7 @@ export const Trail = () => {
           </p>
         </div>
       </div>
-      <img className="horizontalImg" src={trailImg} alt="" />
+      <img className="horizontalImg" src={trail.images.main} alt="" />
       <div className="weatherContainer">
         <h2>Weather</h2>
         <div className="horizontalLine"></div>

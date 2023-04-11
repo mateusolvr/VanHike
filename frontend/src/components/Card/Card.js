@@ -1,27 +1,25 @@
 import React from 'react';
 import './card.css';
-import cardImg from '../../pages/home/ImageDescription.png';
-export const CardComponent = ({ trail }) => {
+export const CardComponent = ({
+  _id,
+  title,
+  province,
+  length,
+  image,
+  elevation,
+}) => {
   return (
     <div>
       <div className="card">
-        <img src={cardImg} className="cardImg" alt="" />
-        {/* <img src={trail.img} className="cardImg" alt="" /> */}
+        <img src={image} className="cardImg" alt="Trail Img" />
         <div className="cardInfo">
-          {/* <strong>{trail.title}</strong>
-          <p>{trail.location}</p>
+          <strong>{title}</strong>
+          <p>{province}</p>
           <div className="cardLine"></div>
           <div className="kmdif">
-            <p>{trail.distance}</p>
+            <p>{length} Km(s)</p>
             <hr />
-            <p>{trail.difficulty}</p> */}
-          <strong>Joffre lakes</strong>
-          <p>asdasdsa</p>
-          <div className="cardLine"></div>
-          <div className="kmdif">
-            <p>12312213</p>
-            <hr />
-            <p>moderate</p>
+            <p>Elevation: {elevation}m</p>
           </div>
         </div>
       </div>
