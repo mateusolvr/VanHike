@@ -46,16 +46,16 @@ export const Home = () => {
             disabled
             disablePortal
             id="combo-box-demo"
-            options={trails}
+            options={trails.map((trail) => trail.length)}
             value={selectedLocation}
             onChange={(event, newValue) => {
-              // setSelectedLocation(newValue);
+              setSelectedLocation(newValue);
             }}
             sx={{ width: 300, color: '#FFFFFF' }}
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Location"
+                label="Length"
                 InputLabelProps={{
                   style: {
                     color: '#FFF',
@@ -66,8 +66,9 @@ export const Home = () => {
                 sx={{
                   borderRight: 'solid 2px #fff',
                   marginBottom: '10px',
-                  color: 'transparent',
+                  color: '#000',
                 }}
+                size="medium"
               />
             )}
           />
@@ -76,7 +77,7 @@ export const Home = () => {
             disabled
             disablePortal
             id="combo-box-demo"
-            options={trails}
+            options={trails.map((trail) => trail.routeType)}
             value={selectedTerrain}
             onChange={(event, newValue) => {
               // setSelectedTerrain(newValue);
@@ -88,6 +89,8 @@ export const Home = () => {
                 label="Type"
                 InputLabelProps={{
                   style: {
+                    display: 'flex',
+                    flexDirection: 'column',
                     color: '#FFF',
                     fontWeight: '400',
                     fontFamily: 'Montserrat',
@@ -114,14 +117,14 @@ export const Home = () => {
             disabled
             disablePortal
             id="combo-box-demo"
-            options={trails}
-            value={selectedDifficulty}
+            options={trails.map((trail) => trail.elevation)}
             onChange={(event, newValue) => {
               // setSelectedDifficulty(newValue);
             }}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField
+                className="autocomplete"
                 {...params}
                 label="Elevation"
                 InputLabelProps={{
@@ -132,12 +135,9 @@ export const Home = () => {
                   },
                 }}
                 sx={{
+                  borderRight: 'solid 2px #fff',
                   marginBottom: '10px',
                   color: 'transparent',
-                  border: 'none',
-                  '&:focus': {
-                    borderColor: '#fff',
-                  },
                 }}
               />
             )}
