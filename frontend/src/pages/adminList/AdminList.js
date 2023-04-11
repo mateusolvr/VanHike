@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../adminList/adminList.css';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { Footer } from '../../components/Footer/Footer';
 import { Container, Button, TextField } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TrailSelection } from '../../components/TrailSelection/TrailSelection';
+import axios from 'axios';
 
 const theme = createTheme({
 	palette: {
@@ -16,6 +17,30 @@ const theme = createTheme({
 });
 
 export const AdminList = () => {
+	const urlHandler = process.env.REACT_APP_URL_HANDLER;
+	const [trails, setTrails] = useState([]);
+
+	useEffect(() => {
+		async function handleGetTrails() {
+			try {
+				const url = `${urlHandler}/vanhike/hikes`;
+
+				axios
+					.get(url)
+					.then((resp) => {
+						setTrails(resp.data.reverse());
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			} catch (err) {
+				console.log(err);
+			}
+		}
+
+		handleGetTrails();
+	}, [urlHandler]);
+
 	return (
 		<>
 			<Navbar />
@@ -41,33 +66,21 @@ export const AdminList = () => {
 					</div>
 					<hr />
 
-					<TrailSelection
-						name='Joffre Lakes'
-						place='British Columbia'
-						datePosted='02/16/2023'
-						linkTo='#!'
-					/>
-
-					<TrailSelection
-						name='Joffre Lakes'
-						place='British Columbia'
-						datePosted='02/16/2023'
-						linkTo='#!'
-					/>
-
-					<TrailSelection
-						name='Joffre Lakes'
-						place='British Columbia'
-						datePosted='02/16/2023'
-						linkTo='#!'
-					/>
-
-					<TrailSelection
-						name='Joffre Lakes'
-						place='British Columbia'
-						datePosted='02/16/2023'
-						linkTo='#!'
-					/>
+					{trails.map((trail) => {
+						const date = trail.creationDate.split(' ');
+						const trailDate = date[0].replaceAll('-', '/');
+						return (
+							<TrailSelection
+								name={trail.title}
+								place={trail.province}
+								datePosted={trailDate}
+								linkTo={`/hikes/${trail._id}`}
+								editLink={`/admin/edit-article/${trail._id}`}
+								id={trail._id}
+								key={trail._id}
+							/>
+						);
+					})}
 				</Container>
 
 				<Footer />

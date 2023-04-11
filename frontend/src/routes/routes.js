@@ -10,12 +10,9 @@ import { EditArticle } from '../pages/editArticle/EditArticle';
 import { Context, AuthContext } from '../Context/AuthContext';
 
 export const AppRoutes = () => {
-  function ProtectedRoute({ children }) {
-    const { authenticated, loading } = useContext(Context);
 
-    if (loading) {
-      return <h1>Loading...</h1>;
-    }
+	function ProtectedRoute({ children }) {
+		const { authenticated, loading } = useContext(Context);
 
     if (!authenticated) {
       return <Navigate to="/" />;

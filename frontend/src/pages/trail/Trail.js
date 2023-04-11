@@ -211,14 +211,14 @@ export const Trail = () => {
         <img className="footerLogo" src={logo} alt="logo" />
         <span>2023 VanHike - All rights reserved</span>
 
-        <div className="connectSmallDiv">
-          <p>Connect with us</p>
-          <div className="connectIcons">
-            <FaFacebookF size={20} />
-            <FaInstagram size={20} />
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
+				<div className='connectSmallDiv'>
+					<p>Connect with us</p>
+					<div className='connectIcons'>
+						<FaFacebookF size={20} />
+						<FaInstagram size={20} />
+					</div>
+				</div>
+			</footer>
+		</div>
+	);
 };
