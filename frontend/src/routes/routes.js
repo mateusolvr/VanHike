@@ -11,6 +11,7 @@ import { Context, AuthContext } from '../Context/AuthContext';
 import { Loading } from '../pages/loading/Loading';
 
 export const AppRoutes = () => {
+
 	function ProtectedRoute({ children }) {
 		const { authenticated, loading } = useContext(Context);
 
@@ -29,7 +30,7 @@ export const AppRoutes = () => {
 		<AuthContext>
 			<Routes>
 				<Route path='/' element={<Home />} />
-				<Route path='/trails/1' element={<Trail />} />
+				<Route path="/hikes/:_id" element={<Trail />} />
 				<Route path='/admin' element={<Admin />} />
 				<Route
 					path='/admin-list'
