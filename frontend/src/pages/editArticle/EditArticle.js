@@ -29,6 +29,10 @@ export const EditArticle = () => {
 	const [secondImage, setSecondImage] = useState();
 	const [footerImage, setFooterImage] = useState();
 	const [imageLinks, setImageLinks] = useState({});
+	const [imageLinkMain, setImageLinkMain] = useState(false);
+	const [imageLinkFirst, setImageLinkFirst] = useState(false);
+	const [imageLinkSecond, setImageLinkSecond] = useState(false);
+	const [imageLinkFooter, setImageLinkFooter] = useState(false);
 
 	const urlHandler = process.env.REACT_APP_URL_HANDLER;
 
@@ -86,18 +90,22 @@ export const EditArticle = () => {
 
 						if (data.images.main) {
 							images.main = data.images.main;
+							setImageLinkMain(true);
 						}
 
 						if (data.images.first) {
 							images.first = data.images.first;
+							setImageLinkFirst(true);
 						}
 
 						if (data.images.second) {
 							images.second = data.images.second;
+							setImageLinkSecond(true);
 						}
 
 						if (data.images.footer) {
 							images.footer = data.images.footer;
+							setImageLinkFooter(true);
 						}
 
 						setValues(valuesObj);
@@ -121,6 +129,28 @@ export const EditArticle = () => {
 	}
 
 	const { handleEditArticle } = useContext(Context);
+
+	function deleteImageLink(e, image) {
+		e.preventDefault();
+
+		const images = imageLinks;
+
+		if (image === images.main) {
+			delete images.main;
+			setImageLinkMain(false);
+		} else if (image === images.first) {
+			delete images.first;
+			setImageLinkFirst(false);
+		} else if (image === images.second) {
+			delete images.second;
+			setImageLinkSecond(false);
+		} else if (image === images.footer) {
+			delete images.footer;
+			setImageLinkFooter(false);
+		}
+
+		setImageLinks(images);
+	}
 
 	return (
 		<>
@@ -367,7 +397,19 @@ export const EditArticle = () => {
 										/>
 									</span>
 								) : (
-									<span>{imageLinks.main ? 'Image uploaded' : ''}</span>
+									<span>
+										{imageLinkMain ? (
+											<>
+												Image uploaded{' '}
+												<CancelIcon
+													className='cancelIcon'
+													onClick={(e) => deleteImageLink(e, imageLinks.main)}
+												/>
+											</>
+										) : (
+											''
+										)}
+									</span>
 								)}
 							</div>
 
@@ -396,7 +438,19 @@ export const EditArticle = () => {
 										/>
 									</span>
 								) : (
-									<span>{imageLinks.first ? 'Image uploaded' : ''}</span>
+									<span>
+										{imageLinkFirst ? (
+											<>
+												Image uploaded{' '}
+												<CancelIcon
+													className='cancelIcon'
+													onClick={(e) => deleteImageLink(e, imageLinks.first)}
+												/>
+											</>
+										) : (
+											''
+										)}
+									</span>
 								)}
 							</div>
 
@@ -425,7 +479,19 @@ export const EditArticle = () => {
 										/>
 									</span>
 								) : (
-									<span>{imageLinks.second ? 'Image uploaded' : ''}</span>
+									<span>
+										{imageLinkSecond ? (
+											<>
+												Image uploaded{' '}
+												<CancelIcon
+													className='cancelIcon'
+													onClick={(e) => deleteImageLink(e, imageLinks.second)}
+												/>
+											</>
+										) : (
+											''
+										)}
+									</span>
 								)}
 							</div>
 
@@ -454,7 +520,19 @@ export const EditArticle = () => {
 										/>
 									</span>
 								) : (
-									<span>{imageLinks.footer ? 'Image uploaded' : ''}</span>
+									<span>
+										{imageLinkFooter ? (
+											<>
+												Image uploaded{' '}
+												<CancelIcon
+													className='cancelIcon'
+													onClick={(e) => deleteImageLink(e, imageLinks.footer)}
+												/>
+											</>
+										) : (
+											''
+										)}
+									</span>
 								)}
 							</div>
 						</div>
