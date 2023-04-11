@@ -10,6 +10,7 @@ import axios from 'axios';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 export const Home = () => {
+  const urlHandler = process.env.REACT_APP_URL_HANDLER;
   const [trails, setTrails] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedTerrain, setSelectedTerrain] = useState('');
@@ -17,7 +18,7 @@ export const Home = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8005/vanhike/hikes')
+      .get(`${urlHandler}/vanhike/hikes`)
       .then((response) => {
         setTrails(response.data);
       })

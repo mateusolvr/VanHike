@@ -8,6 +8,7 @@ import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { BsCloudSnow, BsMap } from 'react-icons/bs';
 
 export const Trail = () => {
+  const urlHandler = process.env.REACT_APP_URL_HANDLER;
   const [trail, setTrail] = useState({});
   const { _id } = useParams();
   console.log(_id);
@@ -23,7 +24,7 @@ export const Trail = () => {
   useEffect(() => {
     const getTrailData = async () => {
       await axios
-        .get(`http://localhost:8005/vanhike/hikes/${_id}`)
+        .get(`${urlHandler}/vanhike/hikes/${_id}`)
         .then((res) => {
           setTrail(res.data);
           console.log(res.data);
@@ -211,14 +212,14 @@ export const Trail = () => {
         <img className="footerLogo" src={logo} alt="logo" />
         <span>2023 VanHike - All rights reserved</span>
 
-				<div className='connectSmallDiv'>
-					<p>Connect with us</p>
-					<div className='connectIcons'>
-						<FaFacebookF size={20} />
-						<FaInstagram size={20} />
-					</div>
-				</div>
-			</footer>
-		</div>
-	);
+        <div className="connectSmallDiv">
+          <p>Connect with us</p>
+          <div className="connectIcons">
+            <FaFacebookF size={20} />
+            <FaInstagram size={20} />
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 };
