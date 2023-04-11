@@ -10,52 +10,49 @@ import { EditArticle } from '../pages/editArticle/EditArticle';
 import { Context, AuthContext } from '../Context/AuthContext';
 
 export const AppRoutes = () => {
+
 	function ProtectedRoute({ children }) {
 		const { authenticated, loading } = useContext(Context);
 
-		if (loading) {
-			return <h1>Loading...</h1>;
-		}
+    if (!authenticated) {
+      return <Navigate to="/" />;
+    } else {
+      return children;
+    }
+  }
 
-		if (!authenticated) {
-			return <Navigate to='/' />;
-		} else {
-			return children;
-		}
-	}
-
-	return (
-		<AuthContext>
-			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/trails/1' element={<Trail />} />
-				<Route path='/admin' element={<Admin />} />
-				<Route
-					path='/admin-list'
-					element={
-						<ProtectedRoute>
-							<AdminList />
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path='/admin/create-article'
-					element={
-						<ProtectedRoute>
-							<CreateArticle />
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path='/admin/edit-article'
-					element={
-						<ProtectedRoute>
-							<EditArticle />
-						</ProtectedRoute>
-					}
-				/>
-				<Route path='*' element={<ErrorPage />} />
-			</Routes>
-		</AuthContext>
-	);
+  return (
+    <AuthContext>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/hikes/:_id" element={<Trail />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/admin-list"
+          element={
+            <ProtectedRoute>
+              <AdminList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/create-article"
+          element={
+            <ProtectedRoute>
+              <CreateArticle />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/edit-article"
+          element={
+            <ProtectedRoute>
+              <EditArticle />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </AuthContext>
+  );
 };

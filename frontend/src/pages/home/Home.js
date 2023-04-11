@@ -16,9 +16,14 @@ export const Home = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
 
   useEffect(() => {
-    axios.get('/trails').then((response) => {
-      setTrails(response.data);
-    });
+    axios
+      .get('http://localhost:8005/vanhike/hikes')
+      .then((response) => {
+        setTrails(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   useEffect(() => {
     const params = {
@@ -43,7 +48,7 @@ export const Home = () => {
             options={trails}
             value={selectedLocation}
             onChange={(event, newValue) => {
-              setSelectedLocation(newValue);
+              // setSelectedLocation(newValue);
             }}
             sx={{ width: 300, color: '#FFFFFF' }}
             renderInput={(params) => (
@@ -72,7 +77,7 @@ export const Home = () => {
             options={trails}
             value={selectedTerrain}
             onChange={(event, newValue) => {
-              setSelectedTerrain(newValue);
+              // setSelectedTerrain(newValue);
             }}
             sx={{ width: 300 }}
             renderInput={(params) => (
@@ -101,7 +106,7 @@ export const Home = () => {
             options={trails}
             value={selectedDifficulty}
             onChange={(event, newValue) => {
-              setSelectedDifficulty(newValue);
+              // setSelectedDifficulty(newValue);
             }}
             sx={{ width: 300 }}
             renderInput={(params) => (
@@ -127,43 +132,20 @@ export const Home = () => {
             )}
           />
         </div>
-
-        {/* <img src={topography} className="topography" /> */}
       </div>
       <div className="cardContainer">
-        {/* <ul className="cardGrid">
-          {trails.map((trail) => (
-            <li key={trail.id}>
-              <Link to={`/trails/${trail.id}`}>
-                <CardComponent
-                  name={trail.name}
-                  location={trail.location}
-                  distance={trail.distance}
-                  difficulty={trail.difficulty}
-                  image={trail.image}
-                />
-              </Link>
-            </li>
-          ))}
-        </ul> */}
-        <Link to="/trails/1">
-          <CardComponent />
-        </Link>
-        <Link to="/trails/1">
-          <CardComponent />
-        </Link>
-        <Link to="/trails/1">
-          <CardComponent />
-        </Link>
-        <Link to="/trails/1">
-          <CardComponent />
-        </Link>
-        <Link to="/trails/1">
-          <CardComponent />
-        </Link>
-        <Link to="/trails/1">
-          <CardComponent />
-        </Link>
+        {trails.map((trail) => (
+          <Link to={`/hikes/${trail._id}`}>
+            <CardComponent
+              _id={trail._id}
+              title={trail.title}
+              province={trail.province}
+              length={trail.length}
+              elevation={trail.elevation}
+              image={trail.images.main}
+            />
+          </Link>
+        ))}
       </div>
       <footer className="footer">
         <img className="footerLogo" src={logo} alt="logo" />
