@@ -58,7 +58,16 @@ export const Trail = () => {
           </div>
           <h1 className="singleTrailTitle">{trail.title}</h1>
           <p className="singleTrailLocation">{trail.province}</p>
-          <p className="singleTrailCoordinates">50.324123 N, 122.213123 W</p>
+          <p className="singleTrailCoordinates">
+            {trail && trail.location && trail.location.latitude
+              ? trail.location.latitude
+              : ''}{' '}
+            N,{' '}
+            {trail && trail.location && trail.location.longitude
+              ? trail.location.latitude
+              : ''}
+            W
+          </p>
           <div className="smallDiv"></div>
           <p className="singleTrailDescription">
             {' '}
@@ -69,7 +78,16 @@ export const Trail = () => {
 
           <div className="map">
             <BsMap size={20} className="bsMap" />
-            <p> Open in Map</p>
+            <a
+              href={
+                trail && trail.location && trail.location.mapUrl
+                  ? trail.location.mapUrl
+                  : ''
+              }
+            >
+              {' '}
+              Open in Map
+            </a>
           </div>
         </div>
       </div>
@@ -79,20 +97,20 @@ export const Trail = () => {
       </div>
 
       <div className="aboutTrailContainer">
-        <h2>Joffre Lakes</h2>
+        <h2>{trail.title}</h2>
         <div className="smallDiv"></div>
         <div className="aboutTrailInfo">
           <div className="lengthElevationRoute">
             <p>Length</p>
-            <b>7.4Km</b>
+            <b>{trail.length}Km</b>
           </div>
           <div className="lengthElevationRoute">
             <p>Elevation</p>
-            <b>491 M</b>
+            <b>{trail.elevation} M</b>
           </div>
           <div className="lengthElevationRoute">
             <p>Route Type</p>
-            <b>Out & Back</b>
+            <b>{trail.routeType}</b>
           </div>
         </div>
         <div className="picAndTextContainer">
