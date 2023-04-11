@@ -74,7 +74,7 @@ export const AdminList = () => {
 								name={trail.title}
 								place={trail.province}
 								datePosted={trailDate}
-								linkTo={`/trails/${trail._id}`}
+								linkTo={`/hikes/${trail._id}`}
 								editLink={`/admin/edit-article/${trail._id}`}
 								id={trail._id}
 								key={trail._id}
