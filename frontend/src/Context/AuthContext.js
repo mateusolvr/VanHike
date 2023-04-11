@@ -70,6 +70,8 @@ function AuthContext({ children }) {
 		footerImage
 	) {
 		event.preventDefault();
+		setLoading(true);
+
 		const coordinates = values.coordinates.split(', ');
 
 		const hike = {
@@ -179,6 +181,7 @@ function AuthContext({ children }) {
 		await axios
 			.post(url, hike, config)
 			.then((resp) => {
+				setLoading(false);
 				return navigate(`/admin-list`);
 			})
 			.catch((error) => {
@@ -227,6 +230,8 @@ function AuthContext({ children }) {
 		imageLinks
 	) {
 		event.preventDefault();
+		setLoading(true);
+
 		const coordinates = values.coordinates.split(', ');
 
 		const hike = {
@@ -344,6 +349,7 @@ function AuthContext({ children }) {
 		await axios
 			.put(url, hike, config)
 			.then((resp) => {
+				setLoading(false);
 				return navigate(`/admin-list`);
 			})
 			.catch((error) => {

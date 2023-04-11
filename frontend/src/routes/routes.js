@@ -8,13 +8,14 @@ import { AdminList } from '../pages/adminList/AdminList';
 import { CreateArticle } from '../pages/createArticle/CreateArticle';
 import { EditArticle } from '../pages/editArticle/EditArticle';
 import { Context, AuthContext } from '../Context/AuthContext';
+import { Loading } from '../pages/loading/Loading';
 
 export const AppRoutes = () => {
 	function ProtectedRoute({ children }) {
 		const { authenticated, loading } = useContext(Context);
 
 		if (loading) {
-			return <h1>Loading...</h1>;
+			return <Loading />;
 		}
 
 		if (!authenticated) {
@@ -47,7 +48,7 @@ export const AppRoutes = () => {
 					}
 				/>
 				<Route
-					path='/admin/edit-article'
+					path='/admin/edit-article/:id'
 					element={
 						<ProtectedRoute>
 							<EditArticle />
