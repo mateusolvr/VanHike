@@ -19,6 +19,9 @@ const theme = createTheme({
 export const AdminList = () => {
 	const urlHandler = process.env.REACT_APP_URL_HANDLER;
 	const [trails, setTrails] = useState([]);
+	const [values, setValues] = useState('');
+	const [filteredTrails, setFilteredTrails] = useState([]);
+	const [typeStatus, setTypeStatus] = useState(false);
 
 	useEffect(() => {
 		async function handleGetTrails() {
@@ -28,7 +31,7 @@ export const AdminList = () => {
 				axios
 					.get(url)
 					.then((resp) => {
-						setTrails(resp.data.reverse());
+						setFilteredTrails(resp.data.reverse());
 					})
 					.catch((err) => {
 						console.log(err);
@@ -40,6 +43,31 @@ export const AdminList = () => {
 
 		handleGetTrails();
 	}, [urlHandler]);
+
+	function handleChange(event) {
+		const auxValues = { ...values };
+		auxValues[event.target.id] = event.target.value;
+		setValues((prevState) => ({ ...prevState, ...auxValues }));
+
+		if (auxValues.search.length === 1) {
+			if (typeStatus === false) {
+				setTypeStatus(true);
+				setTrails(filteredTrails);
+			}
+		}
+
+		if (!auxValues.search || values.search === '') {
+			setFilteredTrails(trails);
+		}
+
+		if (auxValues.search !== '') {
+			const filter = filteredTrails.filter(
+				(t) =>
+					t.title.toLowerCase().search(auxValues.search.toLowerCase()) !== -1
+			);
+			setFilteredTrails(filter);
+		}
+	}
 
 	return (
 		<>
@@ -59,14 +87,15 @@ export const AdminList = () => {
 						<TextField
 							sx={{ width: 400 }}
 							className='webform-content'
-							id='standard-basic'
+							id='search'
 							label='SEARCH ARTICLE'
 							variant='standard'
+							onChange={(e) => handleChange(e)}
 						/>
 					</div>
 					<hr />
 
-					{trails.map((trail) => {
+					{filteredTrails.map((trail) => {
 						const date = trail.creationDate.split(' ');
 						const trailDate = date[0].replaceAll('-', '/');
 						return (
