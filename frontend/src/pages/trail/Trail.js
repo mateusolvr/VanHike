@@ -6,6 +6,7 @@ import './trail.css';
 import logo from '../../components/Navbar/logo.png';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { BsMap } from 'react-icons/bs';
+import { Footer } from '../../components/Footer/Footer';
 
 export const Trail = () => {
   const urlHandler = process.env.REACT_APP_URL_HANDLER;
@@ -241,18 +242,7 @@ export const Trail = () => {
           </div>
         </div>
       </div>
-      <footer className="footer">
-        <img className="footerLogo" src={logo} alt="logo" />
-        <span>2023 VanHike - All rights reserved</span>
-
-        <div className="connectSmallDiv">
-          <p>Connect with us</p>
-          <div className="connectIcons">
-            <FaFacebookF size={20} />
-            <FaInstagram size={20} />
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

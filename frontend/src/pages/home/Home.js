@@ -2,14 +2,12 @@ import './home.css';
 import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { Navbar } from '../../components/Navbar/Navbar';
-import Autocomplete from '@mui/material/Autocomplete';
 import logo from '../../components/Navbar/logo.png';
 import { CardComponent } from '../../components/Card/Card';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { FaFacebookF, FaInstagram, FaSearch } from 'react-icons/fa';
-import topography from './topography.png';
-import path from './path.png';
+import { FaSearch } from 'react-icons/fa';
+import { Footer } from '../../components/Footer/Footer';
 
 export const Home = () => {
   const urlHandler = process.env.REACT_APP_URL_HANDLER;
@@ -17,7 +15,6 @@ export const Home = () => {
   const [values, setValues] = useState('');
   const [filteredTrails, setFilteredTrails] = useState([]);
   const [typeStatus, setTypeStatus] = useState(false);
-
   useEffect(() => {
     axios
       .get(`${urlHandler}/vanhike/hikes`)
@@ -86,17 +83,7 @@ export const Home = () => {
           </Link>
         ))}
       </div>
-      <footer className="footer">
-        <img className="footerLogo" src={logo} alt="logo" />
-        <span>2023 VanHike - All rights reserved</span>
-        <div className="connectSmallDiv">
-          <p>Connect with us</p>
-          <div className="connectIcons">
-            <FaFacebookF size={20} />
-            <FaInstagram size={20} />
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
