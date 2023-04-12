@@ -85,8 +85,8 @@ function AuthContext({ children }) {
             elevation: values.elevation,
             length: values.length,
             location: {
-                latitude: trim(coordinates[0]),
-                longitude: trim(coordinates[1]),
+                latitude: coordinates[0].trim(),
+                longitude: coordinates[1].trim(),
                 mapUrl: values.mapURL,
             },
             routeType: values.routeType,
@@ -100,8 +100,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint1,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
@@ -112,8 +112,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint2,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
@@ -124,8 +124,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint3,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
@@ -136,8 +136,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint4,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
@@ -245,8 +245,8 @@ function AuthContext({ children }) {
             elevation: values.elevation,
             length: values.length,
             location: {
-                latitude: trim(coordinates[0]),
-                longitude: trim(coordinates[1]),
+                latitude: coordinates[0].trim(),
+                longitude: coordinates[1].trim(),
                 mapUrl: values.mapURL,
             },
             routeType: values.routeType,
@@ -260,8 +260,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint1,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
@@ -272,8 +272,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint2,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
@@ -284,8 +284,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint3,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
@@ -296,8 +296,8 @@ function AuthContext({ children }) {
 
             const waypoint = {
                 name: values.waypoint4,
-                latitude: trim(waypointCoord[0]),
-                longitude: trim(waypointCoord[1]),
+                latitude: waypointCoord[0].trim(),
+                longitude: waypointCoord[1].trim(),
             };
 
             hike.wayPoints.push(waypoint);
