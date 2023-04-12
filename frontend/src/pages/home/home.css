@@ -16,7 +16,7 @@ opacity: 1;
   width: 100vw;
   height: 533px;
   background: transparent url(./ImageDescription.png) 0% 0% no-repeat padding-box;
-  
+  overflow: hidden;
 }
 .filterContainer{
   display: flex;
@@ -90,4 +90,22 @@ max-height: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.topography{
+  position: absolute;
+  top: 281px;
+  left: 1559px;
+  width: 731px;
+  height: 737px;
+  opacity: .8;
+}
+.path{
+  /* Layout Properties */
+  position:absolute;
+top: 976px;
+left: -37.33333206176758px;
+width: 284px;
+height: 901px;
+/* UI Properties */
+opacity: 0.4;
 }

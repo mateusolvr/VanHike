@@ -8,6 +8,8 @@ import { CardComponent } from '../../components/Card/Card';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import topography from './topography.png';
+import path from './path.png';
 
 export const Home = () => {
   const urlHandler = process.env.REACT_APP_URL_HANDLER;
@@ -145,6 +147,9 @@ export const Home = () => {
           />
         </div>
       </div>
+      {/* <img src={topography} className="topography" alt="topography img" />
+      <img src={path} className="path" alt="path img" /> */}
+
       <div className="cardContainer">
         {trails.map((trail) => (
           <Link to={`/hikes/${trail._id}`}>

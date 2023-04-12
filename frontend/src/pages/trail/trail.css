@@ -16,6 +16,7 @@
 .singleTrailImg{
   width: 100vw;
   max-height: 700px;
+  opacity:.6;
 }
 .singleTrailInfoContainer{
   position: absolute;
@@ -136,14 +137,31 @@ opacity: 1;
 .aboutTrailInfo{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .lengthElevationRoute{
   padding: 10px 30px 10px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 120px;
+  min-width: 120px;
+  
 }
 .lengthElevationRoute p{
   /* UI Properties */
 text-align: center;
 font: normal normal normal 14px/24px 'Montserrat';
+letter-spacing: 0px;
+color: #FFFFFF;
+text-transform: uppercase;
+}
+.lengthElevationRoute b{
+  /* UI Properties */
+text-align: center;
+font: normal normal normal 14px/24px 'Montserrat';
+font-weight: bold;
 letter-spacing: 0px;
 color: #FFFFFF;
 text-transform: uppercase;
@@ -238,6 +256,11 @@ opacity: 1;
 .waypointsDiv h2{
   margin-top: 80px;
 }
+.weatherListContainer{
+  display: flex;
+  flex-direction: row;
+
+}
 .weatherListContainer p{
 text-align: center;
 font: normal normal bold 16px/19px 'Montserrat';
@@ -272,16 +295,74 @@ height: 200px;
 border: 1px solid #FFFFFF;
 opacity: 1;
 }
-.weatherListContainer .weatherMiniDiv{
+.weatherMiniDiv{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-
 }
 .weatherListContainer .weatherMiniDivForecast{
 text-align: center;
 font: normal normal normal 12px/15px 'Montserrat';  
-padding: 10px 10px 5px 20px;
+padding: 20px 10px 5px 20px;
+}
+
+.weatherIcon{
+  filter:grayscale(80%);
+}
+
+.weatherMiniDivText{
+  font-weight: 400;
+  font-family: 'Montserrat';
+}
+.waypointsListContainer{
+  display: flex;
+  flex-direction: row;
+  margin: 80px 20px 20px 20px;
+}
+.waypointMiniDiv{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 50px 20px 50px;
+}
+.waypointMiniDiv .waypointNumber{
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 200px;
+  margin-bottom: 5px;
+  max-width: 30px;
+  font-size: 1em;
+}
+.waypointMiniDiv .waypointName{
+text-align: left;
+font: normal normal bold 16px/19px 'Montserrat';
+letter-spacing: 0px;
+color: #FFFFFF;
+}
+.waypointMiniDiv .waypointLatLon{
+text-align: left;
+font: normal normal normal 14px/18px 'Montserrat';
+letter-spacing: 0px;
+color: #FFFFFF;
+}
+.topography{
+  position: absolute;
+  top: 281px;
+  left: 1559px;
+  width: 731px;
+  height: 737px;
+  opacity: .8;
+}
+.path{
+position:absolute;
+top: 976px;
+left: -37.33333206176758px;
+width: 284px;
+height: 901px;
+opacity: 0.4;
 }
