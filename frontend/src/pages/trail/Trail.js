@@ -94,13 +94,12 @@ export const Trail = () => {
                     <p className="singleTrailLocation">{trail.province}</p>
                     <p className="singleTrailCoordinates">
                         {trail && trail.location && trail.location.latitude
-                            ? trail.location.latitude
-                            : ''}{' '}
-                        N,{' '}
-                        {trail && trail.location && trail.location.longitude
-                            ? trail.location.latitude
+                            ? trail.location.latitude.toFixed(5)
                             : ''}
-                        W
+                        ,{' '}
+                        {trail && trail.location && trail.location.longitude
+                            ? trail.location.longitude.toFixed(5)
+                            : ''}
                     </p>
                     <div className="smallDiv"></div>
                     <p className="singleTrailDescription">
@@ -136,11 +135,11 @@ export const Trail = () => {
                 <div className="aboutTrailInfo">
                     <div className="lengthElevationRoute">
                         <p>Length</p>
-                        <b>{trail.length}Km</b>
+                        <b>{trail.length} m</b>
                     </div>
                     <div className="lengthElevationRoute">
                         <p>Elevation</p>
-                        <b>{trail.elevation} M</b>
+                        <b>{trail.elevation} m</b>
                     </div>
                     <div className="lengthElevationRoute">
                         <p>Route Type</p>
