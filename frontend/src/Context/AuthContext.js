@@ -201,7 +201,6 @@ function AuthContext({ children }) {
                     'upload_preset',
                     process.env.REACT_APP_CLOUDINARY_PRESET
                 );
-                console.log(formData);
                 await axios
                     .post(process.env.REACT_APP_CLOUDINARY, formData)
                     .then((res) => {

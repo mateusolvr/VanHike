@@ -6,8 +6,6 @@ import './trail.css';
 import logo from '../../components/Navbar/logo.png';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { BsMap } from 'react-icons/bs';
-import topography from '../home/topography.png';
-import path from '../home/path.png';
 
 export const Trail = () => {
   const urlHandler = process.env.REACT_APP_URL_HANDLER;
@@ -15,7 +13,6 @@ export const Trail = () => {
   const [trail, setTrail] = useState({});
   const [forecastWeather, setForecastWeather] = useState({});
   const { _id } = useParams();
-  console.log(_id);
 
   useEffect(() => {
     const getWeatherData = async (trail) => {
@@ -24,8 +21,6 @@ export const Trail = () => {
           `http://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${trail.location.latitude},${trail.location.longitude}&aqi=no&alerts=no&days=7`
         )
         .then((res) => {
-          console.log('Forecast Weather: ');
-          console.log(res.data);
           setForecastWeather(res.data);
         })
         .catch((err) => {
@@ -37,7 +32,6 @@ export const Trail = () => {
         .get(`${urlHandler}/vanhike/hikes/${_id}`)
         .then((res) => {
           setTrail(res.data);
-          console.log(res.data);
           getWeatherData(res.data);
         })
         .catch((err) => {
@@ -139,8 +133,6 @@ export const Trail = () => {
           </div>
         </div>
       </div>
-      {/* <img src={topography} className="topography" alt="topography img" />
-      <img src={path} className="path" alt="path img" /> */}
       <div className="learnMoreContainer">
         <p className="learnMore">Learn More</p>
         <div className="verticalLine"></div>
