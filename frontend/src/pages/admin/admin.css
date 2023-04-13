@@ -39,3 +39,7 @@ figure {
 	color: #111 !important;
 	background-color: white !important;
 }
+
+#alert-message {
+	display: none;
+}
