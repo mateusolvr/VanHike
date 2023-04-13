@@ -37,7 +37,7 @@ export const Admin = () => {
 	return (
 		<>
 			<Stack sx={{ width: '100%' }} spacing={2}>
-				<Alert variant='filled' severity='warning' id='alert-message'>
+				<Alert variant='filled' severity='error' id='alert-message'>
 					Username or Password incorrect! Please, try again.
 				</Alert>
 			</Stack>
@@ -60,7 +60,7 @@ export const Admin = () => {
 								fullWidth
 								className='webform-content'
 								id='user'
-								label='E-mail'
+								label='Username'
 								variant='standard'
 								onChange={(e) => handleChange(e)}
 							/>

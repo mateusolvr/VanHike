@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import './createArticle.css';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { Footer } from '../../components/Footer/Footer';
-import { Container, TextField, Button } from '@mui/material';
+import { Container, TextField, Button, Alert, Stack } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import ControlPointOutlinedIcon from '@mui/icons-material/ControlPointOutlined';
@@ -35,6 +35,11 @@ export const CreateArticle = () => {
 
 	return (
 		<>
+			<Stack sx={{ width: '100%' }} spacing={2}>
+				<Alert variant='filled' severity='error' id='alert-message'>
+					All form fields and Main Image must be filled.
+				</Alert>
+			</Stack>
 			<Navbar />
 			<ThemeProvider theme={theme}>
 				<Container>

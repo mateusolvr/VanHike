@@ -67,6 +67,37 @@ function AuthContext({ children }) {
 		return navigate('/');
 	}
 
+	// Form validation
+	async function validateForm(values, mainImage) {
+		if (
+			values.title === '' ||
+			values.province === '' ||
+			values.intro === '' ||
+			values.firstText === '' ||
+			values.secondText === '' ||
+			values.elevation === '' ||
+			values.length === '' ||
+			values.coordinates === '' ||
+			values.mapURL === '' ||
+			values.routeType === '' ||
+			!values.title ||
+			!values.province ||
+			!values.intro ||
+			!values.firstText ||
+			!values.secondText ||
+			!values.elevation ||
+			!values.length ||
+			!values.coordinates ||
+			!values.mapURL ||
+			!values.routeType ||
+			!mainImage
+		) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	// Handle Create Article
 	async function handleCreateArticle(
 		event,
@@ -77,123 +108,135 @@ function AuthContext({ children }) {
 		footerImage
 	) {
 		event.preventDefault();
-		setLoading(true);
+		if (await validateForm(values, mainImage)) {
+			setLoading(true);
 
-		const coordinates = values.coordinates.split(',');
+			const coordinates = values.coordinates.split(',');
 
-		const hike = {
-			title: values.title,
-			province: values.province,
-			description: {
-				intro: values.intro,
-				first: values.firstText,
-				second: values.secondText,
-			},
-			elevation: values.elevation,
-			length: values.length,
-			location: {
-				latitude: coordinates[0].trim(),
-				longitude: coordinates[1].trim(),
-				mapUrl: values.mapURL,
-			},
-			routeType: values.routeType,
-			wayPoints: [],
-			images: {},
-		};
-
-		// Check for waypoints
-		if (values.waypoint1 && values.waypoint1coordinate) {
-			const waypointCoord = values.waypoint1coordinate.split(',');
-
-			const waypoint = {
-				name: values.waypoint1,
-				latitude: waypointCoord[0].trim(),
-				longitude: waypointCoord[1].trim(),
+			const hike = {
+				title: values.title,
+				province: values.province,
+				description: {
+					intro: values.intro,
+					first: values.firstText,
+					second: values.secondText,
+				},
+				elevation: values.elevation,
+				length: values.length,
+				location: {
+					latitude: coordinates[0].trim(),
+					longitude: coordinates[1].trim(),
+					mapUrl: values.mapURL,
+				},
+				routeType: values.routeType,
+				wayPoints: [],
+				images: {},
 			};
 
-			hike.wayPoints.push(waypoint);
-		}
+			// Check for waypoints
+			if (values.waypoint1 && values.waypoint1coordinate) {
+				const waypointCoord = values.waypoint1coordinate.split(',');
 
-		if (values.waypoint2 && values.waypoint2coordinate) {
-			const waypointCoord = values.waypoint2coordinate.split(',');
+				const waypoint = {
+					name: values.waypoint1,
+					latitude: waypointCoord[0].trim(),
+					longitude: waypointCoord[1].trim(),
+				};
 
-			const waypoint = {
-				name: values.waypoint2,
-				latitude: waypointCoord[0].trim(),
-				longitude: waypointCoord[1].trim(),
+				hike.wayPoints.push(waypoint);
+			}
+
+			if (values.waypoint2 && values.waypoint2coordinate) {
+				const waypointCoord = values.waypoint2coordinate.split(',');
+
+				const waypoint = {
+					name: values.waypoint2,
+					latitude: waypointCoord[0].trim(),
+					longitude: waypointCoord[1].trim(),
+				};
+
+				hike.wayPoints.push(waypoint);
+			}
+
+			if (values.waypoint3 && values.waypoint3coordinate) {
+				const waypointCoord = values.waypoint3coordinate.split(',');
+
+				const waypoint = {
+					name: values.waypoint3,
+					latitude: waypointCoord[0].trim(),
+					longitude: waypointCoord[1].trim(),
+				};
+
+				hike.wayPoints.push(waypoint);
+			}
+
+			if (values.waypoint4 && values.waypoint4coordinate) {
+				const waypointCoord = values.waypoint4coordinate.split(',');
+
+				const waypoint = {
+					name: values.waypoint4,
+					latitude: waypointCoord[0].trim(),
+					longitude: waypointCoord[1].trim(),
+				};
+
+				hike.wayPoints.push(waypoint);
+			}
+
+			//Checks for images
+			if (mainImage) {
+				await handleImage(mainImage).then((response) => {
+					hike.images.main = response;
+				});
+			}
+
+			if (firstImage) {
+				await handleImage(firstImage).then((response) => {
+					hike.images.first = response;
+				});
+			}
+
+			if (secondImage) {
+				await handleImage(secondImage).then((response) => {
+					hike.images.second = response;
+				});
+			}
+
+			if (footerImage) {
+				await handleImage(footerImage).then((response) => {
+					hike.images.footer = response;
+				});
+			}
+
+			// Sending to server
+			const url = `${urlHandler}/vanhike/hike`;
+			const token = localStorage.getItem('token');
+			const config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${JSON.parse(token)}`,
+				},
 			};
 
-			hike.wayPoints.push(waypoint);
+			await axios
+				.post(url, hike, config)
+				.then((resp) => {
+					setLoading(false);
+					return navigate(`/admin-list`);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		} else {
+			if (AxiosError.ERR_BAD_REQUEST) {
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+				const alertMsg = document.getElementById('alert-message');
+				alertMsg.style.display = 'flex';
+
+				setTimeout(() => {
+					alertMsg.style.display = 'none';
+				}, 8000);
+			}
 		}
-
-		if (values.waypoint3 && values.waypoint3coordinate) {
-			const waypointCoord = values.waypoint3coordinate.split(',');
-
-			const waypoint = {
-				name: values.waypoint3,
-				latitude: waypointCoord[0].trim(),
-				longitude: waypointCoord[1].trim(),
-			};
-
-			hike.wayPoints.push(waypoint);
-		}
-
-		if (values.waypoint4 && values.waypoint4coordinate) {
-			const waypointCoord = values.waypoint4coordinate.split(',');
-
-			const waypoint = {
-				name: values.waypoint4,
-				latitude: waypointCoord[0].trim(),
-				longitude: waypointCoord[1].trim(),
-			};
-
-			hike.wayPoints.push(waypoint);
-		}
-
-		//Checks for images
-		if (mainImage) {
-			await handleImage(mainImage).then((response) => {
-				hike.images.main = response;
-			});
-		}
-
-		if (firstImage) {
-			await handleImage(firstImage).then((response) => {
-				hike.images.first = response;
-			});
-		}
-
-		if (secondImage) {
-			await handleImage(secondImage).then((response) => {
-				hike.images.second = response;
-			});
-		}
-
-		if (footerImage) {
-			await handleImage(footerImage).then((response) => {
-				hike.images.footer = response;
-			});
-		}
-
-		// Sending to server
-		const url = `${urlHandler}/vanhike/hike`;
-		const token = localStorage.getItem('token');
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${JSON.parse(token)}`,
-			},
-		};
-
-		await axios
-			.post(url, hike, config)
-			.then((resp) => {
-				setLoading(false);
-				return navigate(`/admin-list`);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
 	}
 
 	// handleImage
@@ -236,6 +279,7 @@ function AuthContext({ children }) {
 		imageLinks
 	) {
 		event.preventDefault();
+
 		setLoading(true);
 
 		const coordinates = values.coordinates.split(',');
