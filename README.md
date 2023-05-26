@@ -1,4 +1,4 @@
-# Getting Started with VanHike (academic project)
+# Getting Started with VanHike
 
 This page will help you get started with the Single Page Application VanHike.
 
